@@ -1,0 +1,37 @@
+2024-06-19 10:11:15,531 - INFO - Original data shape: (284807, 31)
+2024-06-19 10:11:27,116 - INFO - Missing values:
+Time      0
+V1        0
+V2        0
+V3        0
+V4        0
+V5        0
+V6        0
+V7        0
+V8        0
+V9        0
+V10       0
+V11       0
+V12       0
+V13       0
+V14       0
+V15       0
+V16       0
+V17       0
+V18       0
+V19       0
+V20       0
+V21       0
+V22       0
+V23       0
+V24       0
+V25       0
+V26       0
+V27       0
+V28       0
+Amount    0
+Class     0
+dtype: int64
+2024-06-19 10:12:51,661 - INFO - Data shape after removing outliers: (252903, 31)
+2024-06-19 10:14:24,006 - INFO - Data shape after removing duplicates: (252082, 32)
+2024-06-19 10:23:49,880 - INFO - Data cleaning completed and cleaned data saved as CreditCleaned.csv
