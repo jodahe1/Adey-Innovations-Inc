@@ -1,30 +1,41 @@
-from flask import Flask
+from flask import Flask, jsonify
 import psycopg2
 
 app = Flask(__name__)
 
-@app.route('/')
-def home():
-    return "Welcome to the Flask API!"
-
-@app.route('/api/data')
-def get_data():
+# Establish a connection to the PostgreSQL database
+def create_connection():
     conn = psycopg2.connect(
-        host="localhost",
+        host="local",
+        port="5542",
         database="week8",
         user="postgres",
         password="postgres"
     )
+    return conn
 
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM CleanedCsv")  # Replace "your_table" with the actual table name
+# Fetch data from the database
+def fetch_data():
+    conn = create_connection()
+    cursor = conn.cursor()
 
-    data = cur.fetchall()
+    # Execute a SQL query
+    cursor.execute("SELECT * FROM Frauddata")
 
-    cur.close()
+    # Fetch all the rows as a list of tuples
+    rows = cursor.fetchall()
+
+    # Close the cursor and connection
+    cursor.close()
     conn.close()
 
-    return str(data)  # Returning the fetched data as a string for simplicity
+    return rows
+
+# Define an API endpoint to fetch the data
+@app.route('/data', methods=['GET'])
+def get_data():
+    data = fetch_data()
+    return jsonify(data)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

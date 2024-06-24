@@ -1,0 +1,17 @@
+# Use an official Python runtime as the parent image
+FROM python:3.8-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the project files into the container
+COPY . .
+
+# Install the dependencies specified in the requirements.txt file
+RUN pip install -r requirements.txt
+
+# Expose port 5000 to allow access to the Flask application
+EXPOSE 5000
+
+# Set the command to run the "serve_model.py" script
+CMD ["python", "serve_model.py"]
